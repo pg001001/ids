@@ -41,7 +41,7 @@ find_subdomains() {
     echo "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 
     echo "Running gobuster for subdomain brute force on ${domain}..."
-    gobuster dns -d "${domain}" -w "/root/main/subdomains_brute_force/subdomains_tiny.txt" -o "${base_dir}/dns_brute_force.txt" --wildcard
+    # gobuster dns -d "${domain}" -w "/root/main/subdomains_brute_force/subdomains_tiny.txt" -o "${base_dir}/dns_brute_force.txt" --wildcard
 
     # Combine all results into one file, sort and make unique
     echo "Combining all subdomain results..."
