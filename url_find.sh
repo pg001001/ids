@@ -24,12 +24,12 @@ url_enumeration() {
 
     # Remove duplicate URLs
     echo "Removing duplicate URLs..."
-    sort -u "${base_dir}/allUrls.txt" -o "${base_dir}/allurls.txt"
+    sort -u "${base_dir}/allurls.txt" -o "${base_dir}/allurls.txt"
     echo "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 
     echo "Getting live urls for ${domain}..."
     cat "${base_dir}/allurls.txt" | httpx -random-agent -retries 2 -mc 200,403,500 -o "${base_dir}/liveallurls.txt" 2>/dev/null
-    halive "${base_dir}/allurls.txt" -o "${base_dir}/liveasllurls.txt" 2>/dev/null
+    halive "${base_dir}/allurls.txt" -o "${base_dir}/liveallurls.txt" 2>/dev/null
     echo "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 
     mkdir -p "${base_dir}/vuln/"
@@ -54,7 +54,7 @@ url_enumeration() {
     for test in "${tests[@]}"; do
         echo "Running gf for $test..."
         # Output the result to a file named after the test in the specified vuln subdirectory
-        cat "${base_dir}/allurls.txt" | gf $test > "${base_dir}/vuln/$test.txt"
+        cat "${base_dir}/liveallurls.txt" | gf $test > "${base_dir}/vuln/$test.txt"
     done
 
     # paramspider --domain "${domain}" --exclude woff,css,js,png,svg,php,jpg --output "${base_dir}/paramspider_${domain}.txt"
