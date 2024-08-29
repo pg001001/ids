@@ -36,7 +36,7 @@ scan_information() {
     grep -r --color=always -i -E "aws|s3" "${base_dir}/js.txt" >> "${base_dir}/information/aws_s3_files.txt"
 
     # api spicific endpoints
-    katana -mdc ‘contains(endpoint,”api”)’ -jc -u ${domain} >> "${base_dir}/information/api_endpoints.txt"
+    katana -mdc "contains(endpoint,"api")" -jc -u ${domain} >> "${base_dir}/information/api_endpoints.txt"
     grep -r --color=always -i -E "api" "${base_dir}/allurls.txt" >> "${base_dir}/information/api_endpoints.txt"
 
     # pdf and docx files
