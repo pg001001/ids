@@ -8,26 +8,26 @@ url_enumeration() {
     mkdir -p "${base_dir}"
     
     # gau
-    echo "Running gau for ${domain}..."
+    # echo "Running gau for ${domain}..."
     gau "${domain}" --subs --blacklist png,jpg,gif,jpeg,swf,woff,svg | tee -a "${base_dir}/allurls.txt" > /dev/null
     echo "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 
     # katana
-    echo "Running katana for ${domain}..."
+    # echo "Running katana for ${domain}..."
     echo "${domain}" | katana -jc -silent >> "${base_dir}/allurls.txt"
     echo "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 
     # waymore
-    echo "Running waymore for ${domain}..."
+    # echo "Running waymore for ${domain}..."
     waymore -i "${domain}" -mode U -c "${HOME}/config.yml" -oU "${base_dir}/allurls.txt"
     echo "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 
     # Remove duplicate URLs
-    echo "Removing duplicate URLs..."
+    # echo "Removing duplicate URLs..."
     sort -u "${base_dir}/allurls.txt" -o "${base_dir}/allurls.txt"
     echo "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 
-    echo "Getting live urls for ${domain}..."
+    # echo "Getting live urls for ${domain}..."
     cat "${base_dir}/allurls.txt" | httpx -random-agent -retries 2 -mc 200,403,500 -o "${base_dir}/liveallurls.txt" 2>/dev/null
     # halive "${base_dir}/allurls.txt" -o "${base_dir}/liveallurls.txt" 2>/dev/null
     echo "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"

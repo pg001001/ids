@@ -16,7 +16,7 @@ echo "Starting subdomain enumeration..."
 ./subdomain_find.sh "$domain"
 
 # Run URL enumeration 
-echo "Starting URL enumeration..."
+echo "Starting url enumeration..."
 ./url_find.sh "$domain"
 
 # Run JavaScript file analysis 

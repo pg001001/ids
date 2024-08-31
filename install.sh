@@ -106,9 +106,9 @@ sudo cp ~/go/bin/katana /usr/local/bin/
 pipx install git+https://github.com/xnl-h4ck3r/waymore.git	
 pipx ensurepath
 
-echo "Installing wayback..."
-go install -v github.com/tomnomnom/waybackurls@latest
-sudo cp ~/go/bin/waybackurls /usr/local/bin/
+# echo "Installing wayback..."
+# go install -v github.com/tomnomnom/waybackurls@latest
+# sudo cp ~/go/bin/waybackurls /usr/local/bin/
 
 # Install port scan
 

@@ -5,7 +5,6 @@ find_subdomains() {
     local domain=$1
     local date=$(date +'%Y-%m-%d')
     local base_dir="${domain}/$([ "$IGNORE_SPLIT" = "false" ] && echo "${date}/")"
-    # local wordlist= "root/main/subdomains_brute_force/subdomains_tiny.txt"
     mkdir -p "${base_dir}"
     
     # Subdomain enumeration
