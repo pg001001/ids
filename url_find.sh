@@ -29,7 +29,7 @@ url_enumeration() {
 
     echo "Getting live urls for ${domain}..."
     cat "${base_dir}/allurls.txt" | httpx -random-agent -retries 2 -mc 200,403,500 -o "${base_dir}/liveallurls.txt" 2>/dev/null
-    halive "${base_dir}/allurls.txt" -o "${base_dir}/liveallurls.txt" 2>/dev/null
+    # halive "${base_dir}/allurls.txt" -o "${base_dir}/liveallurls.txt" 2>/dev/null
     echo "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 
     mkdir -p "${base_dir}/vuln/"

@@ -40,8 +40,8 @@ scan_information() {
     grep -r --color=always -i -E "api" "${base_dir}/allurls.txt" >> "${base_dir}/information/api_endpoints.txt"
 
     # pdf and docx files
-    grep -r --color=always -i -E "./pdf" "${base_dir}/allurls.txt" >> "${base_dir}/information/pdfs_file.txt"
-    grep -r --color=always -i -E "./docx | ./xlsx" "${base_dir}/allurls.txt" >> "${base_dir}/information/docx_files.txt"
+    grep -r --color=always -i -E "\.pdf" "${base_dir}/allurls.txt" >> "${base_dir}/information/pdfs_file.txt"
+    grep -r --color=always -i -E "\.docx | ./xlsx" "${base_dir}/allurls.txt" >> "${base_dir}/information/docx_files.txt"
 
     rm -r "${base_dir}/js_files/"
 
