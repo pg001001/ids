@@ -47,6 +47,14 @@ scan_information() {
     grep -r --color=always -i -E "\.pdf" "${base_dir}/allurls.txt" >> "${base_dir}/information/pdfs_file.txt"
     grep -r --color=always -i -E "\.docx | ./xlsx" "${base_dir}/allurls.txt" >> "${base_dir}/information/docx_files.txt"
 
+    # emails
+    grep -r --color=always -i -E "@" "${base_dir}/allurls.txt" >> "${base_dir}/information/emails.txt"
+    grep -r --color=always -i -E "%40" "${base_dir}/allurls.txt" >> "${base_dir}/information/emails.txt"
+    grep -r --color=always -i -E "gmail | yahoo | hotmail " "${base_dir}/allurls.txt" >> "${base_dir}/information/common_emails.txt"
+
+    # billngs
+    grep -r --color=always -i -E "invoce | price | billing | payment" "${base_dir}/allurls.txt" >> "${base_dir}/information/billings.txt"
+    
     rm -r "${base_dir}/js_files/"
 
 }
