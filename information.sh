@@ -58,6 +58,9 @@ scan_information() {
     
     # credentials
     grep -r --color=always -i -E ":" "${base_dir}/allurls.txt" >> "${base_dir}/information/credentials"
+
+    #search sensitive files 
+    waybackurls "${domain}" | grep - -color -E "1.xls | \\. xml | \\.xlsx | \\.json | \\. pdf | \\.sql | \\. doc| \\.docx | \\. pptx| \\.txt| \\.zip| \\.tar.gz| \\.tgz| \\.bak| \\.7z| \\.rar" >> "${base_dir}/information/file.txt"
     
     rm -r "${base_dir}/js_files/"
 
