@@ -80,7 +80,7 @@ scan_information() {
     # waybackurls "${domain}" | grep - -color -E "1.xls | \\. xml | \\.xlsx | \\.json | \\. pdf | \\.sql | \\. doc| \\.docx | \\. pptx| \\.txt| \\.zip| \\.tar.gz| \\.tgz| \\.bak| \\.7z| \\.rar" >> "${base_dir}/information/file.txt"
     grep -r --color=always -i -E "\.xls|\.xml|\.xlsx|\.json|\.pdf|\.sql|\.doc|\.docx|\.pptx|\.txt|\.zip|\.tar.gz|\.tgz|\.bak|\.7z|\.rar" "${base_dir}/allurls.txt" >>  "${base_dir}/information/sensitive_files.txt"
 
-    rm -r "${base_dir}/js_files/"
+    # rm -r "${base_dir}/js_files/"
 
 }
 
