@@ -41,8 +41,10 @@ scan_information() {
     grep -r --color=always -i -E "aws|s3" "${base_dir}/js.txt" >> "${base_dir}/information/aws_s3_files.txt"
 
     # api spicific endpoints
-    katana -mdc "contains(endpoint,"api")" -jc -u ${domain} >> "${base_dir}/information/api_endpoints.txt"
+    # katana -mdc "contains(endpoint,"api")" -jc -u ${domain} >> "${base_dir}/information/api_endpoints.txt"
     grep -r --color=always -i -E "api" "${base_dir}/allurls.txt" >> "${base_dir}/information/api_endpoints.txt"
+    grep -r --color=always -i -E "apikey | api-key" "${base_dir}/allurls.txt" >> "${base_dir}/information/api_key.txt"
+
 
     # pdf and docx files
     grep -r --color=always -i -E "\.pdf" "${base_dir}/allurls.txt" >> "${base_dir}/information/pdfs_file.txt"
@@ -55,13 +57,29 @@ scan_information() {
 
     # billngs
     grep -r --color=always -i -E "invoice | price | billing | payment" "${base_dir}/allurls.txt" >> "${base_dir}/information/billings.txt"
+    grep -r --color=always -i -E "invoice | billing | payment | receipt | pay | bill | purchase | order | checkout | paynow | transaction" "${base_dir}/allurls.txt" >> "${base_dir}/information/pay.txt"
     
+    # orders related urls
+    grep -r --color=always -i -E "confirm | order-detail" "${base_dir}/allurls.txt" >> "${base_dir}/information/confirm.txt"
+    grep -r --color=always -i -E "return" "${base_dir}/allurls.txt" >> "${base_dir}/information/return.txt"
+    grep -r --color=always -i -E "track | trk" "${base_dir}/allurls.txt" >> "${base_dir}/information/track.txt"
+    
+    # account related urls
+    grep -r --color=always -i -E "account | your-account" "${base_dir}/allurls.txt" >> "${base_dir}/information/accounts.txt"
+
+    # links related urls - urls which redirect to different urls showcasing information 
+    grep -r --color=always -i -E "link | crm" "${base_dir}/allurls.txt" >> "${base_dir}/information/links.txt"
+
     # credentials
-    grep -r --color=always -i -E ":" "${base_dir}/allurls.txt" >> "${base_dir}/information/credentials"
+    grep -r --color=always -i -E "register | signin | forgotpassword | forgot-password | login" "${base_dir}/allurls.txt" >> "${base_dir}/information/credentials.txt"
+
+    # personal informations url
+    grep -r --color=always -i -E "firstName | lastName | address | phone" "${base_dir}/allurls.txt" >> "${base_dir}/information/personal_information.txt"
 
     #search sensitive files 
-    waybackurls "${domain}" | grep - -color -E "1.xls | \\. xml | \\.xlsx | \\.json | \\. pdf | \\.sql | \\. doc| \\.docx | \\. pptx| \\.txt| \\.zip| \\.tar.gz| \\.tgz| \\.bak| \\.7z| \\.rar" >> "${base_dir}/information/file.txt"
-    
+    # waybackurls "${domain}" | grep - -color -E "1.xls | \\. xml | \\.xlsx | \\.json | \\. pdf | \\.sql | \\. doc| \\.docx | \\. pptx| \\.txt| \\.zip| \\.tar.gz| \\.tgz| \\.bak| \\.7z| \\.rar" >> "${base_dir}/information/file.txt"
+    grep -r --color=always -i -E "\.xls|\.xml|\.xlsx|\.json|\.pdf|\.sql|\.doc|\.docx|\.pptx|\.txt|\.zip|\.tar.gz|\.tgz|\.bak|\.7z|\.rar" "${base_dir}/allurls.txt" >>  "${base_dir}/information/sensitive_files.txt"
+
     rm -r "${base_dir}/js_files/"
 
 }
